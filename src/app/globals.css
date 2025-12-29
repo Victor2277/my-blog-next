@@ -1,26 +1,65 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-merriweather), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+  --color-brand-50: #f9f9f9;
+  --color-brand-100: #f0f0f0;
+  --color-brand-500: #333333;
+  --color-brand-900: #000000;
+  --color-accent-500: #3b82f6;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  body {
+    background-color: var(--color-brand-50);
+    color: var(--color-brand-900);
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+    letter-spacing: -0.025em;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Markdown Content Styles */
+.markdown-content p {
+  @apply mb-4 leading-7 text-gray-700 font-serif text-lg;
+}
+
+.markdown-content h2 {
+  @apply text-2xl mt-8 mb-4 font-bold text-brand-900;
+}
+
+.markdown-content h3 {
+  @apply text-xl mt-6 mb-3 font-bold text-brand-900;
+}
+
+.markdown-content ul {
+  @apply list-disc list-inside mb-4 ml-4 text-gray-700;
+}
+
+.markdown-content a {
+  @apply text-accent-500 hover:underline;
+}
+
+.markdown-content blockquote {
+  @apply border-l-4 border-gray-300 pl-4 italic my-4 text-gray-600;
+}
+
+.markdown-content img {
+  /* Use !important to override .prose img specificity */
+  width: auto !important;
+  max-width: 100% !important;
+  height: auto !important;
+  display: inline-block !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  border-radius: 0.5rem;
 }
